@@ -7,12 +7,16 @@ using UnityEngine.EventSystems;
 public class Hand : MonoBehaviour
 {
     public CubismModel model;
-    public bool clickSwitchHand;
 
     private bool isTouch;
     private bool isNotTouch = true;
     private bool isTouchAndMove;
     private bool isNotTouchAndMove = true;
+
+    private bool isHandBoobsL;
+    private bool isHandBoobsR;
+    private bool isHandTeasing;
+    private bool isHandJerkOffHer;
 
     private void Update()
     {
@@ -21,44 +25,66 @@ public class Hand : MonoBehaviour
             case "BoobL_UI":
                 if (isTouch || isTouchAndMove)
                 {
-                    model.Parameters[19].Value = 10f;
+                    isHandBoobsL = true;                   
                 }
                 else if (isNotTouch && isNotTouchAndMove)
                 {
-                    model.Parameters[19].Value = 0f;
+                    isHandBoobsL = false;
                 }
                 break;
             case "BoobR_UI":
                 if (isTouch || isTouchAndMove)
                 {
-                    model.Parameters[20].Value = 10f;
+                    isHandBoobsR = true;
                 }
                 else if (isNotTouch && isNotTouchAndMove)
                 {
-                    model.Parameters[20].Value = 0f;
+                    isHandBoobsR = false;
                 }
                 break;
             case "Teasing_UI":
                 if (isTouch || isTouchAndMove)
                 {
-                    model.Parameters[21].Value = 10f;
+                    isHandTeasing = true;
+                    
                 }
                 else if (isNotTouch && isNotTouchAndMove)
                 {
-                    model.Parameters[21].Value = 0f;
+                    isHandTeasing = false;
                 }
                 break;
             case "JerkOffHer_UI":
                 if (isTouch || isTouchAndMove)
                 {
-                    model.Parameters[22].Value = 10f;
+                    isHandJerkOffHer = true;         
                 }
                 else if (isNotTouch && isNotTouchAndMove)
                 {
-                    model.Parameters[22].Value = 0f;
+                    isHandJerkOffHer = false;
                 }
                 break;
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (isHandBoobsL)
+        {
+            model.Parameters[19].Value = 10f;
+        }       
+        if (isHandBoobsR)
+        {
+            model.Parameters[20].Value = 10f;
+        }
+        if (isHandTeasing)
+        {
+            model.Parameters[21].Value = 10f;
+        }
+        if (isHandJerkOffHer)
+        {
+            model.Parameters[22].Value = 10f;
+        }
+ 
     }
 
     public void Touch()
@@ -81,15 +107,5 @@ public class Hand : MonoBehaviour
     {
         isTouchAndMove = false;
         isNotTouchAndMove = true;
-    }
-
-    public void JerkOffHer()
-    {
-        clickSwitchHand = !clickSwitchHand;
-    }
-
-    private void UI_Control()
-    {
-        
     }
 }

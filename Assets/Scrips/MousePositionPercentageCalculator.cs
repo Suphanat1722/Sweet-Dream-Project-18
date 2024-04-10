@@ -26,9 +26,9 @@ public class MousePositionPercentageCalculator : MonoBehaviour
         Teasing,//6,7
         BoobL,//8,9
         BoobR,//10,11
-        Fuck,//13
-        JerkOff,//14
-        JerkOffHer//15
+        Fuck,//14
+        JerkOff,//15
+        JerkOffHer//16
     }
     //ตัวเลือกว่าต้องการควบคุม Parameter ตัวไหน
     [SerializeField]
@@ -67,8 +67,7 @@ public class MousePositionPercentageCalculator : MonoBehaviour
 
     void LateUpdate()
     {
-        SelectParameter();
-        
+        SelectParameter();       
     }
 
     private void SelectParameter()
@@ -102,13 +101,13 @@ public class MousePositionPercentageCalculator : MonoBehaviour
                     model.Parameters[11].Value = percenYmodel;
                     break;
                 case EnumParameter.Fuck:
-                    model.Parameters[13].Value = percenYmodel;
-                    break;
-                case EnumParameter.JerkOff:
                     model.Parameters[14].Value = percenYmodel;
                     break;
-                case EnumParameter.JerkOffHer:
+                case EnumParameter.JerkOff:
                     model.Parameters[15].Value = percenYmodel;
+                    break;
+                case EnumParameter.JerkOffHer:
+                    model.Parameters[16].Value = percenYmodel;
                     break;
             }
         }

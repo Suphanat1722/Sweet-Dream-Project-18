@@ -8,22 +8,25 @@ public class RadiusManeger : MonoBehaviour
 {
     public CubismModel model;
     public GameObject singletObj;
-    public GameObject singleImage;
+    public GameObject singleUI;
     public List<GameObject> boobsObj;
-    public List<GameObject> boobsImage;
+    public List<GameObject> boobsUI;
     public GameObject shortsObj;
-    public GameObject shortsImage;
+    public GameObject shortsUI;
     public GameObject teasingObj;
-    public GameObject teasingImage;
+    public GameObject teasingUI;
     public GameObject pantiesObj;
-    public GameObject pantiesImage;
+    public GameObject pantiesUI;
     public GameObject legObj;
-    public GameObject legImage;
+    public GameObject legUI;
+    public GameObject jeckOffHerObj;
+    public GameObject jeckOffHerUI;
 
     private bool isTakeOffShirt;
     private bool isTakeOffShorts;
     private bool isTakeOffPanties;
     private bool isSpreadLegs;
+    public bool clickSwitchHand;
 
     private void Update()
     {
@@ -37,11 +40,6 @@ public class RadiusManeger : MonoBehaviour
 
     private void CheckParametor()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            model.Parameters[3].Value = 10f;
-        }
-
         //เช็คว่าถอดเสื้อหรือยัง
         if (model.Parameters[1].Value == 10f)
         {
@@ -66,6 +64,7 @@ public class RadiusManeger : MonoBehaviour
             isSpreadLegs = true;
         }
     }
+
     private void ChangeValueParametor()
     {
         //ถ้าถอดเสื้อแล้ว
@@ -74,13 +73,13 @@ public class RadiusManeger : MonoBehaviour
             model.Parameters[1].Value = 10f;
 
             singletObj.SetActive(false);
-            singleImage.SetActive(false);
+            singleUI.SetActive(false);
 
             foreach (GameObject obj in boobsObj)
             {
                 obj.SetActive(true);
             }
-            foreach (GameObject obj in boobsImage)
+            foreach (GameObject obj in boobsUI)
             {
                 obj.SetActive(true);
             }
@@ -91,7 +90,7 @@ public class RadiusManeger : MonoBehaviour
             {
                 obj.SetActive(false);
             }
-            foreach (GameObject obj in boobsImage)
+            foreach (GameObject obj in boobsUI)
             {
                 obj.SetActive(false);
             }
@@ -102,15 +101,15 @@ public class RadiusManeger : MonoBehaviour
             model.Parameters[2].Value = 10f;
 
             pantiesObj.SetActive(true);
-            pantiesImage.SetActive(true);
+            pantiesUI.SetActive(true);
 
             shortsObj.SetActive(false);
-            shortsImage.SetActive(false);
+            shortsUI.SetActive(false);
         }
         else
         {
             pantiesObj.SetActive(false);
-            pantiesImage.SetActive(false);
+            pantiesUI.SetActive(false);
         }
 
         //ถ้าถอดกางเกงในแล้ว
@@ -119,21 +118,24 @@ public class RadiusManeger : MonoBehaviour
             model.Parameters[3].Value = 10f;
 
             pantiesObj.SetActive(false);
-            pantiesImage.SetActive(false);
+            pantiesUI.SetActive(false);
 
             legObj.SetActive(true);
-            legImage.SetActive(true);
+            legUI.SetActive(true);
 
             teasingObj.SetActive(true);
-            teasingImage.SetActive(true);
+            teasingUI.SetActive(true);
         }
         else
         {
             legObj.SetActive(false);
-            legImage.SetActive(false);
+            legUI.SetActive(false);
 
             teasingObj.SetActive(false);
-            teasingImage.SetActive(false);
+            teasingUI.SetActive(false);
+
+            jeckOffHerObj.SetActive(false);
+            jeckOffHerUI.SetActive(false);
         }
 
         //ถ้าถ่างขาแล้ว
@@ -141,8 +143,30 @@ public class RadiusManeger : MonoBehaviour
         {
             model.Parameters[5].Value = 10f;
 
+            if (!clickSwitchHand)
+            {
+                teasingObj.SetActive(true);
+                teasingUI.SetActive(true);
+
+                jeckOffHerObj.SetActive(false);
+                jeckOffHerUI.SetActive(false);
+            }
+            else
+            {
+                jeckOffHerObj.SetActive(true);
+                jeckOffHerUI.SetActive(true);
+
+                teasingObj.SetActive(false);
+                teasingUI.SetActive(false);
+            }
+
             legObj.SetActive(false);
-            legImage.SetActive(false);
+            legUI.SetActive(false);
         }
+    }
+
+    public void JerkOffHer()
+    {
+        clickSwitchHand = !clickSwitchHand;
     }
 }
