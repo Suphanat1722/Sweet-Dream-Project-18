@@ -68,6 +68,7 @@ public class MousePositionPercentageCalculator : MonoBehaviour
     void LateUpdate()
     {
         SelectParameter();
+        
     }
 
     private void SelectParameter()
