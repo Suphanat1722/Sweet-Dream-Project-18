@@ -5,11 +5,25 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private GameObject model;
+    public CubismModel model;
 
+    private bool isClick;
+
+    private void Start()
+    {
+        model.Parts[3].Opacity = 0f;
+    }
+
+    private void LateUpdate()
+    {
+        if (isClick)
+        {
+            model.Parts[3].Opacity = 1f;
+        }    
+    }
 
     public void OpacityParts()
     {
-        //model.Parts[3].Opacity = 1f;
+        isClick = true;
     }
 }
