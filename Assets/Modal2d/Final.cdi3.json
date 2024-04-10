@@ -1,0 +1,234 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "Breathe"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "Singlet"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "",
+			"Name": "Short"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "",
+			"Name": "Panties"
+		},
+		{
+			"Id": "Eyes_ID",
+			"GroupId": "",
+			"Name": "Eyes"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "Legs"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "TeasingX"
+		},
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "TeasingY"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "BoobLX"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "BoobsLY"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "BoobRX"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "BoobsRY"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "",
+			"Name": "Horny"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "",
+			"Name": "Fuck"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "",
+			"Name": "GirlCum"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "",
+			"Name": "Jerk Off"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "",
+			"Name": "Jerk Off  Girl"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "",
+			"Name": "Insert"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "",
+			"Name": "Cum"
+		},
+		{
+			"Id": "Param19",
+			"GroupId": "",
+			"Name": "Hand01L"
+		},
+		{
+			"Id": "Param23",
+			"GroupId": "",
+			"Name": "Hand01R"
+		},
+		{
+			"Id": "Param20",
+			"GroupId": "",
+			"Name": "Hand02"
+		},
+		{
+			"Id": "Param21",
+			"GroupId": "",
+			"Name": "Hand03"
+		},
+		{
+			"Id": "Param22",
+			"GroupId": "",
+			"Name": "Hand04"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Hand2",
+			"Name": "Hand"
+		},
+		{
+			"Id": "Mouth",
+			"Name": "Mouth"
+		},
+		{
+			"Id": "Pussy",
+			"Name": "Pussy"
+		},
+		{
+			"Id": "Player",
+			"Name": "Player"
+		},
+		{
+			"Id": "Clothes",
+			"Name": "Clothes"
+		},
+		{
+			"Id": "Eyes",
+			"Name": "Eyes"
+		},
+		{
+			"Id": "boobs",
+			"Name": "boobs"
+		},
+		{
+			"Id": "Legs",
+			"Name": "Legs"
+		},
+		{
+			"Id": "Body",
+			"Name": "Body"
+		},
+		{
+			"Id": "Hand01R2",
+			"Name": "Hand01R"
+		},
+		{
+			"Id": "Hand01L2",
+			"Name": "Hand01L"
+		},
+		{
+			"Id": "Hand04",
+			"Name": "Hand03"
+		},
+		{
+			"Id": "Hand06",
+			"Name": "Hand02"
+		},
+		{
+			"Id": "Hand08",
+			"Name": "Hand04"
+		},
+		{
+			"Id": "Facial",
+			"Name": "Facial"
+		},
+		{
+			"Id": "NoMosaic",
+			"Name": "NoMosaic"
+		},
+		{
+			"Id": "Singlet",
+			"Name": "Singlet"
+		},
+		{
+			"Id": "Short",
+			"Name": "Short"
+		},
+		{
+			"Id": "Panties",
+			"Name": "Panties"
+		},
+		{
+			"Id": "EyeLR",
+			"Name": "EyeLR"
+		},
+		{
+			"Id": "EyeL",
+			"Name": "EyeL"
+		},
+		{
+			"Id": "legR",
+			"Name": "legR"
+		},
+		{
+			"Id": "legL",
+			"Name": "legL"
+		}
+	],
+	"CombinedParameters": [
+		[
+			"Param7",
+			"Param8"
+		],
+		[
+			"Param3",
+			"Param4"
+		],
+		[
+			"Param5",
+			"Param6"
+		]
+	]
+}
