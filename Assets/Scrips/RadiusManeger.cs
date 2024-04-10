@@ -22,13 +22,21 @@ public class RadiusManeger : MonoBehaviour
 
     private bool isTakeOffShirt;
     private bool isTakeOffShorts;
-    public bool isTakeOffPanties;
+    private bool isTakeOffPanties;
     private bool isSpreadLegs;
 
     private void Update()
     {
-        Debug.Log(model.Parameters[3].Value);
+        CheckParametor();
+    }
 
+    void LateUpdate()
+    {
+        ChangeValueParametor();
+    }
+
+    private void CheckParametor()
+    {
         if (Input.GetKeyDown(KeyCode.E))
         {
             model.Parameters[3].Value = 10f;
@@ -58,9 +66,8 @@ public class RadiusManeger : MonoBehaviour
             isSpreadLegs = true;
         }
     }
-
-    void LateUpdate()
-    {     
+    private void ChangeValueParametor()
+    {
         //ถ้าถอดเสื้อแล้ว
         if (isTakeOffShirt)
         {
@@ -78,7 +85,7 @@ public class RadiusManeger : MonoBehaviour
                 obj.SetActive(true);
             }
         }
-        else if(!isTakeOffShirt)
+        else
         {
             foreach (GameObject obj in boobsObj)
             {
@@ -100,7 +107,7 @@ public class RadiusManeger : MonoBehaviour
             shortsObj.SetActive(false);
             shortsImage.SetActive(false);
         }
-        else if(!isTakeOffShorts)
+        else
         {
             pantiesObj.SetActive(false);
             pantiesImage.SetActive(false);
