@@ -21,12 +21,18 @@ public class RadiusManeger : MonoBehaviour
     public GameObject legUI;
     public GameObject jeckOffHerObj;
     public GameObject jeckOffHerUI;
-    public GameObject handButton;
-    public GameObject playerButton;
     public GameObject insertObj; // Index 17
     public GameObject insertUI;
     public GameObject fuckObj;
     public GameObject fuckUI;
+    public GameObject jerkOffObj;
+    public GameObject jerkOffUI;
+    public GameObject handButton;
+    public GameObject playerButton;
+    public GameObject jeckOffButton;
+    public GameObject fuckButton;
+
+    public Player player;
 
     private bool isTakeOffShirt;
     private bool isTakeOffShorts;
@@ -39,12 +45,13 @@ public class RadiusManeger : MonoBehaviour
     private void Update()
     {
         CheckParametor();
+        ButtonChack();
     }
 
     void LateUpdate()
     {
         ChangeValueParametor();
-        ButtonChack();
+        
     }
 
     private void CheckParametor()
@@ -66,11 +73,19 @@ public class RadiusManeger : MonoBehaviour
         {
             isTakeOffPanties = true;
         }
+        else if (player.isClickPlayer)
+        {
+            isTakeOffPanties = false;
+        }
 
         //เช็คว่าถางขาหรือยัง
-        if (model.Parameters[5].Value == 10f)
+        if (model.Parameters[5].Value == 10f )
         {
             isSpreadLegs = true;
+        }
+        else if (player.isClickPlayer)
+        {
+            isSpreadLegs = false;
         }
 
         //เช็ดว่าเริ่มสอดหรือยัง
@@ -131,15 +146,20 @@ public class RadiusManeger : MonoBehaviour
         if (isTakeOffPanties)
         {
             model.Parameters[3].Value = 10f;
-
+  
             pantiesObj.SetActive(false);
             pantiesUI.SetActive(false);
 
             legObj.SetActive(true);
             legUI.SetActive(true);
 
-            teasingObj.SetActive(true);
-            teasingUI.SetActive(true);
+            if (!player.isClickPlayer)
+            {
+                teasingObj.SetActive(true);
+                teasingUI.SetActive(true);
+            }
+
+
         }
         else
         {
@@ -151,6 +171,8 @@ public class RadiusManeger : MonoBehaviour
 
             jeckOffHerObj.SetActive(false);
             jeckOffHerUI.SetActive(false);
+
+
         }
 
         //ถ้าถ่างขาแล้ว
@@ -158,7 +180,7 @@ public class RadiusManeger : MonoBehaviour
         {
             model.Parameters[5].Value = 10f;
 
-            if (!isClickSwitchHand)
+            if (!isClickSwitchHand && !player.isClickPlayer)
             {
                 teasingObj.SetActive(true);
                 teasingUI.SetActive(true);
@@ -166,10 +188,18 @@ public class RadiusManeger : MonoBehaviour
                 jeckOffHerObj.SetActive(false);
                 jeckOffHerUI.SetActive(false);              
             }
-            else
+            else if(isClickSwitchHand && !player.isClickPlayer)
             {
                 jeckOffHerObj.SetActive(true);
                 jeckOffHerUI.SetActive(true);
+
+                teasingObj.SetActive(false);
+                teasingUI.SetActive(false);
+            }
+            else
+            {
+                jeckOffHerObj.SetActive(false);
+                jeckOffHerUI.SetActive(false);
 
                 teasingObj.SetActive(false);
                 teasingUI.SetActive(false);
@@ -185,6 +215,26 @@ public class RadiusManeger : MonoBehaviour
         {
             handButton.SetActive(false);
             playerButton.SetActive(false);
+        }
+
+        //ถ้ากดปุ่ม Player
+        if (player.isClickPlayer)
+        {
+            model.Parts[3].Opacity = 1f;
+        }
+        else
+        {
+            model.Parts[3].Opacity = 0f;
+        }
+
+        //ถ้ากดปุ่ม Jerk Off
+        if (player.isClickJerkOff)
+        {
+            model.Parameters[23].Value = 10f;
+        }
+        else
+        {
+            model.Parameters[23].Value = 0f;
         }
 
         //ถ้าเริ่มสอดแล้ว
@@ -205,15 +255,35 @@ public class RadiusManeger : MonoBehaviour
         }
     }
 
-    public Player player;
     private void ButtonChack()
     {
+        //เมื่อกดปุ่ม Player
         if (player.isClickPlayer)
         {
-            model.Parts[3].Opacity = 1f;
+           
+            jeckOffButton.SetActive(true);
+            fuckButton.SetActive(true);
+        }
+        else
+        {
+            jeckOffButton.SetActive(false);
+            fuckButton.SetActive(false);
         }
 
-        if (player.isClickPlayer && !isInsert)
+        //เมื่อกคลิ้กปุ่ม Jerk Off
+        if (player.isClickJerkOff)
+        {        
+            jerkOffObj.SetActive(true);
+            jerkOffUI.SetActive(true);
+        }
+        else
+        {
+            jerkOffObj.SetActive(false);
+            jerkOffUI.SetActive(false);
+        }
+
+        //เมื่อคลิ้กปุ่ม Fuck
+        if (player.isClickFuck)
         {
             insertObj.SetActive(true);
             insertUI.SetActive(true);

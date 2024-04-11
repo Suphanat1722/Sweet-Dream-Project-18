@@ -18,6 +18,7 @@ public class Hand : MonoBehaviour
     private bool isHandTeasing;
     private bool isHandJerkOffHer;
 
+
     private void Update()
     {
         switch (gameObject.name)
