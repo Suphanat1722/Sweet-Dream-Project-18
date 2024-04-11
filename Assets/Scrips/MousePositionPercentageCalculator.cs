@@ -63,6 +63,11 @@ public class MousePositionPercentageCalculator : MonoBehaviour
     private void Update()
     {
         MousePosition();
+        
+    }
+
+    private void LateUpdate()
+    {
         SelectParameter();
     }
 
@@ -145,16 +150,22 @@ public class MousePositionPercentageCalculator : MonoBehaviour
             }
             percenYmodel = normalizedY * 100f / 10; // แปลง normalizedY เป็นเปอร์เซ็นต์ (0-100)
             percenXmodel = normalizedX * 100f / 10; // แปลง normalizedX เป็นเปอร์เซ็นต์ (0-100)
-            //Debug.Log(percenXmodel + " X = "+" Y = " + percenYmodel);
+           // Debug.Log(percenXmodel + " X = "+" Y = " + percenYmodel);
         }
-        else if (percenYmodel >= 10f)
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            percenXmodel = 0;
+            percenYmodel = 0;
+        }
+        /*else if (percenYmodel >= 10f)
         {           
             percenYmodel = 10f;
         }
         else if(percenYmodel < 10f)
         {
             percenYmodel = 0;
-        }
+        }*/
     }
 
     private void CalculateMouseRadius()

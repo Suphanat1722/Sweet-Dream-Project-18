@@ -23,12 +23,18 @@ public class RadiusManeger : MonoBehaviour
     public GameObject jeckOffHerUI;
     public GameObject handButton;
     public GameObject playerButton;
+    public GameObject insertObj; // Index 17
+    public GameObject insertUI;
+    public GameObject fuckObj;
+    public GameObject fuckUI;
 
     private bool isTakeOffShirt;
     private bool isTakeOffShorts;
     private bool isTakeOffPanties;
     private bool isSpreadLegs;
-    private bool clickSwitchHand;
+    private bool isClickSwitchHand;
+    private bool isInsert;
+
 
     private void Update()
     {
@@ -38,6 +44,7 @@ public class RadiusManeger : MonoBehaviour
     void LateUpdate()
     {
         ChangeValueParametor();
+        ButtonChack();
     }
 
     private void CheckParametor()
@@ -64,6 +71,12 @@ public class RadiusManeger : MonoBehaviour
         if (model.Parameters[5].Value == 10f)
         {
             isSpreadLegs = true;
+        }
+
+        //เช็ดว่าเริ่มสอดหรือยัง
+        if (model.Parameters[17].Value == 10f)
+        {
+            isInsert = true;
         }
     }
 
@@ -145,7 +158,7 @@ public class RadiusManeger : MonoBehaviour
         {
             model.Parameters[5].Value = 10f;
 
-            if (!clickSwitchHand)
+            if (!isClickSwitchHand)
             {
                 teasingObj.SetActive(true);
                 teasingUI.SetActive(true);
@@ -173,10 +186,47 @@ public class RadiusManeger : MonoBehaviour
             handButton.SetActive(false);
             playerButton.SetActive(false);
         }
+
+        //ถ้าเริ่มสอดแล้ว
+        if (isInsert)
+        {
+            model.Parameters[17].Value = 10f;
+
+            fuckObj.SetActive(true);
+            fuckUI.SetActive(true);
+
+            insertObj.SetActive(false);
+            insertUI.SetActive(false);
+        }
+        else
+        {
+            fuckObj.SetActive(false);
+            fuckUI.SetActive(false);
+        }
+    }
+
+    public Player player;
+    private void ButtonChack()
+    {
+        if (player.isClickPlayer)
+        {
+            model.Parts[3].Opacity = 1f;
+        }
+
+        if (player.isClickPlayer && !isInsert)
+        {
+            insertObj.SetActive(true);
+            insertUI.SetActive(true);
+        }
+        else
+        {
+            insertObj.SetActive(false);
+            insertUI.SetActive(false);
+        }
     }
 
     public void JerkOffHer()
     {
-        clickSwitchHand = !clickSwitchHand;
+        isClickSwitchHand = !isClickSwitchHand;
     }
 }

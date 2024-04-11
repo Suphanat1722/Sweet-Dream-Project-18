@@ -71,7 +71,7 @@ public class Hand : MonoBehaviour
         if (isHandBoobsL)
         {
             model.Parameters[19].Value = 10f;
-        }       
+        }   
         if (isHandBoobsR)
         {
             model.Parameters[20].Value = 10f;
@@ -84,7 +84,6 @@ public class Hand : MonoBehaviour
         {
             model.Parameters[22].Value = 10f;
         }
- 
     }
 
     public void Touch()
