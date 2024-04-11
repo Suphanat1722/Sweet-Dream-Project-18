@@ -7,33 +7,48 @@ using UnityEngine.UI;
 public class MouseSpeed : MonoBehaviour
 {
     public float mouseSpeedThreshold;
+    public Slider slider;
 
     public TextMeshProUGUI speed_text;
     public TextMeshProUGUI textDebug;
 
+    private float mouseX;
+    private float mouseY;
+    private float currentMouseSpeed;
+
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        CalMouseSpeed();
 
-        float mouseSpeed = Mathf.Sqrt(mouseX * mouseX + mouseY * mouseY); // คำนวณความเร็วของเมาส์
+        if (currentMouseSpeed > 1f && Input.GetMouseButton(0))
+        {
+            slider.value += currentMouseSpeed * Time.deltaTime;
+        }
+       
+    }
 
-        mouseSpeed *= Time.deltaTime;
-        mouseSpeed *= mouseSpeedThreshold;
+    private void CalMouseSpeed()
+    {
+        mouseX = Input.GetAxis("Mouse X");
+        mouseY = Input.GetAxis("Mouse Y");
+        currentMouseSpeed = Mathf.Sqrt(mouseX * mouseX + mouseY * mouseY); // คำนวณความเร็วของเมาส์
 
-        textDebug.text = mouseSpeed.ToString();
+        currentMouseSpeed *= Time.deltaTime;
+        currentMouseSpeed *= mouseSpeedThreshold; //mouseSpeedThreshold = 10000
 
-        if (mouseSpeed >= 1 && mouseSpeed < 2)
+        textDebug.text = currentMouseSpeed.ToString();
+
+        if (currentMouseSpeed >= 1 && currentMouseSpeed < 2)
         {
             speed_text.text = "1";
         }
-        else if(mouseSpeed >= 2 && mouseSpeed < 3)
+        else if (currentMouseSpeed >= 2 && currentMouseSpeed < 3)
         {
             speed_text.text = "2";
         }
-        else if (mouseSpeed >= 3 && mouseSpeed < 4)
+        else if (currentMouseSpeed >= 3 && currentMouseSpeed < 4)
         {
-            speed_text.text = "3";
+            speed_text.text = "5";
         }
     }
 }

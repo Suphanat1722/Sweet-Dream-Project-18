@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public GameObject fuckObj;
     public GameObject fuckUI;
 
-    private bool isInsert;
+    public bool isInsert;
     private bool isClick;
 
     private void Start()
@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        //Debug.Log(model.Parameters[17].Value);
         if (model.Parameters[17].Value == 10f && isClick)
         {
             isInsert = true;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
+        Debug.Log(model.Parameters[17].Value);
         if (isClick)
         {
             model.Parts[3].Opacity = 1f;

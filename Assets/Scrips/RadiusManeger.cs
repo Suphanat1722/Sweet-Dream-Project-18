@@ -21,12 +21,14 @@ public class RadiusManeger : MonoBehaviour
     public GameObject legUI;
     public GameObject jeckOffHerObj;
     public GameObject jeckOffHerUI;
+    public GameObject handButton;
+    public GameObject playerButton;
 
     private bool isTakeOffShirt;
     private bool isTakeOffShorts;
     private bool isTakeOffPanties;
     private bool isSpreadLegs;
-    public bool clickSwitchHand;
+    private bool clickSwitchHand;
 
     private void Update()
     {
@@ -149,7 +151,7 @@ public class RadiusManeger : MonoBehaviour
                 teasingUI.SetActive(true);
 
                 jeckOffHerObj.SetActive(false);
-                jeckOffHerUI.SetActive(false);
+                jeckOffHerUI.SetActive(false);              
             }
             else
             {
@@ -160,8 +162,16 @@ public class RadiusManeger : MonoBehaviour
                 teasingUI.SetActive(false);
             }
 
+            handButton.SetActive(true);
+            playerButton.SetActive(true);
+
             legObj.SetActive(false);
             legUI.SetActive(false);
+        }
+        else
+        {
+            handButton.SetActive(false);
+            playerButton.SetActive(false);
         }
     }
 
