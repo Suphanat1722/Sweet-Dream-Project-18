@@ -17,8 +17,10 @@ public class Player : MonoBehaviour
 
     public void JerkOffButton()
     {
-        isClickJerkOff = true;
-        isClickFuck = false;
+        if (!isClickFuck)
+        {
+            isClickJerkOff = true;
+        }        
     }
 
     public void FuckButton()

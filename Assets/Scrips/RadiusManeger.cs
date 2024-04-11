@@ -287,6 +287,9 @@ public class RadiusManeger : MonoBehaviour
         {
             insertObj.SetActive(true);
             insertUI.SetActive(true);
+
+            jerkOffObj.SetActive(false);
+            jerkOffUI.SetActive(false);
         }
         else
         {
