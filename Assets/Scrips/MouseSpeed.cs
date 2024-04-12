@@ -9,12 +9,10 @@ public class MouseSpeed : MonoBehaviour
     public float mouseSpeedThreshold;
     public Slider slider;
 
-    public TextMeshProUGUI speed_text;
-    public TextMeshProUGUI textDebug;
-
     private float mouseX;
     private float mouseY;
-    private float currentMouseSpeed;
+
+    public static float currentMouseSpeed;
 
     void Update()
     {
@@ -24,7 +22,6 @@ public class MouseSpeed : MonoBehaviour
         {
             slider.value += currentMouseSpeed * Time.deltaTime;
         }
-       
     }
 
     private void CalMouseSpeed()
@@ -35,20 +32,5 @@ public class MouseSpeed : MonoBehaviour
 
         currentMouseSpeed *= Time.deltaTime;
         currentMouseSpeed *= mouseSpeedThreshold; //mouseSpeedThreshold = 10000
-
-        textDebug.text = currentMouseSpeed.ToString();
-
-        if (currentMouseSpeed >= 1 && currentMouseSpeed < 2)
-        {
-            speed_text.text = "1";
-        }
-        else if (currentMouseSpeed >= 2 && currentMouseSpeed < 3)
-        {
-            speed_text.text = "2";
-        }
-        else if (currentMouseSpeed >= 3 && currentMouseSpeed < 4)
-        {
-            speed_text.text = "5";
-        }
     }
 }

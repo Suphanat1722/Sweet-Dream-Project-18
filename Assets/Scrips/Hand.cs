@@ -13,8 +13,8 @@ public class Hand : MonoBehaviour
     private bool isTouchAndMove;
     private bool isNotTouchAndMove = true;
 
-    private bool isHandBoobsL;
-    private bool isHandBoobsR;
+    public bool isHandBoobsL;
+    public bool isHandBoobsR;
     private bool isHandTeasing;
     private bool isHandJerkOffHer;
 
