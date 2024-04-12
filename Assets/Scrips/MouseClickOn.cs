@@ -8,7 +8,6 @@ public class MouseClickOn : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 {
     public static string uiName;
 
-
     public void OnPointerDown(PointerEventData eventData)
     {
         uiName = gameObject.name;       
@@ -16,6 +15,6 @@ public class MouseClickOn : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        uiName = "";      
+        uiName = null;      
     }
 }
