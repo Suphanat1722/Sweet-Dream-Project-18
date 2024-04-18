@@ -1,13 +1,13 @@
 {
 	"Version": 3,
 	"Meta": {
-		"Duration": 3,
+		"Duration": 3.033,
 		"Fps": 30.0,
 		"Loop": true,
 		"AreBeziersRestricted": true,
 		"CurveCount": 5,
-		"TotalSegmentCount": 16,
-		"TotalPointCount": 45,
+		"TotalSegmentCount": 17,
+		"TotalPointCount": 46,
 		"UserDataCount": 0,
 		"TotalUserDataSize": 0
 	},
@@ -19,7 +19,7 @@
 				0,
 				10,
 				0,
-				3,
+				3.033,
 				10
 			]
 		},
@@ -30,7 +30,7 @@
 				0,
 				10,
 				0,
-				3,
+				3.033,
 				10
 			]
 		},
@@ -41,7 +41,7 @@
 				0,
 				10,
 				0,
-				3,
+				3.033,
 				10
 			]
 		},
@@ -52,7 +52,7 @@
 				0,
 				10,
 				0,
-				3,
+				3.033,
 				10
 			]
 		},
@@ -145,6 +145,9 @@
 				2.822,
 				0,
 				3,
+				0,
+				0,
+				3.033,
 				0
 			]
 		}

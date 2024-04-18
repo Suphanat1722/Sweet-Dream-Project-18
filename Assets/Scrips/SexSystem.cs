@@ -4,15 +4,21 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class AlertSystem : MonoBehaviour
+public class SexSystem : MonoBehaviour
 {
     public TextMeshProUGUI textAlert;
     public Slider sliderAlert;
     public Slider sliderHorny;
+    public Slider sliderHornyPlayer;
 
-    private string uiName;
+    public static float currentAlert;
+    public static float currentHorny;
+    public static float currentHornyPlayer;
+
     private float alertMultiplier;
     private float hornyMultiplier;
+    private float hornyPlayerMultiplier;
+    private string uiName;
     private float currentMouseSpeed;
     private int day;
 
@@ -27,10 +33,13 @@ public class AlertSystem : MonoBehaviour
 
         gamePlay(uiName);
 
-        //เช็คว่าคลิ้กที่ UIไหม
+        //เช็คว่าคลิ้กที่ UIไหมและคำนวณค่าใน slide
         if (uiName != null && Input.GetMouseButton(0))
         {
             sliderAlert.value += (currentMouseSpeed * alertMultiplier) * Time.deltaTime;        
+        }else if (sliderAlert.value >= 10f)
+        {
+            sliderAlert.value = 10f;
         }
         else
         {
@@ -45,11 +54,31 @@ public class AlertSystem : MonoBehaviour
             sliderHorny.value += (currentMouseSpeed * hornyMultiplier) * Time.deltaTime;
         }
 
+        if (uiName != null && (uiName == "JerkOff_UI" || uiName == "Insert_UI" || uiName == "Fuck_UI") && Input.GetMouseButton(0))
+        {
+            sliderHornyPlayer.value += (currentMouseSpeed * hornyPlayerMultiplier) * Time.deltaTime;
+        }
+
+        //เก็บค่าของ Slider ไว้ในตัวแปร
+        currentAlert = sliderAlert.value;
+        currentHorny = sliderHorny.value;
+        currentHornyPlayer = sliderHornyPlayer.value;
+
+        if (sliderHorny.value >= 10f)
+        {
+            sliderHorny.value = 0f;
+        }
+        if (sliderHornyPlayer.value >= 10f)
+        {
+            sliderHornyPlayer.value = 0f;
+        }
+
         //Set Alert.value ให้เท่ากับ 0
         if (Input.GetKeyDown(KeyCode.E))
         {
             sliderAlert.value = 0f;
             sliderHorny.value = 0f;
+            hornyPlayerMultiplier = 0f;
         }
     }
 
@@ -186,6 +215,7 @@ public class AlertSystem : MonoBehaviour
         else if (uiName == "JerkOff_UI")
         {
             alertMultiplier = 0.01f;
+            hornyPlayerMultiplier = 0.5f;
         }
         else if (uiName == "Insert_UI")
         {
@@ -196,12 +226,12 @@ public class AlertSystem : MonoBehaviour
             else if (day == 5)
             {
                 alertMultiplier = 50;
+                
             }
             else if (day == 6)
             {
                 alertMultiplier = 0.5f;
             }
-
             hornyMultiplier = 0.8f;
         }
         else if (uiName == "Fuck_UI")
@@ -213,10 +243,12 @@ public class AlertSystem : MonoBehaviour
             else if (day == 5)
             {
                 alertMultiplier = 50;
+                hornyPlayerMultiplier = 5f;
             }
             else if (day == 6)
             {
                 alertMultiplier = 0.5f;
+                hornyPlayerMultiplier = 0.1f;
             }
 
             hornyMultiplier = 1f;
@@ -225,6 +257,7 @@ public class AlertSystem : MonoBehaviour
         {
             alertMultiplier = 0.5f;
             hornyMultiplier = 0.5f;
+            hornyPlayerMultiplier = 0.1f;
         }
     }
 }

@@ -37,21 +37,35 @@ public class RadiusManeger : MonoBehaviour
     private bool isTakeOffShirt;
     private bool isTakeOffShorts;
     private bool isTakeOffPanties;
-    private bool isSpreadLegs;
     private bool isClickSwitchHand;
     private bool isInsert;
+
+    public static float currentPlayerOpacity;
+    public static bool isSpreadLegs;
+    public static bool isFuck;
 
 
     private void Update()
     {
         CheckParametor();
         ButtonChack();
+
+        //ถ้ากดปุ่ม Player
+        if (player.isClickPlayer)
+        {
+            currentPlayerOpacity += 0.7f * Time.deltaTime;
+        }
+        else if (!player.isClickPlayer)
+        {
+            currentPlayerOpacity -= 0.7f * Time.deltaTime;
+        }
     }
 
     void LateUpdate()
     {
         ChangeValueParametor();
-        
+        model.Parts[3].Opacity = currentPlayerOpacity;
+
     }
 
     private void CheckParametor()
@@ -217,15 +231,6 @@ public class RadiusManeger : MonoBehaviour
             playerButton.SetActive(false);
         }
 
-        //ถ้ากดปุ่ม Player
-        if (player.isClickPlayer)
-        {
-            model.Parts[3].Opacity = 1f;
-        }
-        else
-        {
-            model.Parts[3].Opacity = 0f;
-        }
 
         //ถ้ากดปุ่ม Jerk Off
         if (player.isClickJerkOff)
@@ -285,6 +290,8 @@ public class RadiusManeger : MonoBehaviour
         //เมื่อคลิ้กปุ่ม Fuck
         if (player.isClickFuck)
         {
+            isFuck = true;
+
             insertObj.SetActive(true);
             insertUI.SetActive(true);
 

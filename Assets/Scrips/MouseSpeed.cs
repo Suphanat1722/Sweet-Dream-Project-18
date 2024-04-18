@@ -26,6 +26,11 @@ public class MouseSpeed : MonoBehaviour
         currentMouseSpeed *= Time.deltaTime;
         currentMouseSpeed *= mouseSpeedThreshold; //mouseSpeedThreshold = 5000
 
+        if (currentMouseSpeed >= 3)
+        {
+            currentMouseSpeed = 3;
+        }
+
         if (MouseSpeed.currentMouseSpeed <= 1 && MouseSpeed.currentMouseSpeed < 2)
         {
             mouseSpeedAvg = 1;
