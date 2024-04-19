@@ -49,7 +49,20 @@ public class RadiusManeger : MonoBehaviour
     {
         CheckParametor();
         ButtonChack();
+        ButtonPlayer();
 
+
+    }
+
+    void LateUpdate()
+    {
+        ChangeValueParametor();
+        model.Parts[3].Opacity = currentPlayerOpacity;
+
+    }
+
+    private void ButtonPlayer()
+    {
         //¶éÒ¡´»ØèÁ Player
         if (player.isClickPlayer && !AnimetionController.isCumInside)
         {
@@ -64,18 +77,11 @@ public class RadiusManeger : MonoBehaviour
         if (currentPlayerOpacity >= 1f && !AnimetionController.isCumInside)
         {
             currentPlayerOpacity = 1f;
-        } 
+        }
         else if (currentPlayerOpacity <= 0f)
         {
             currentPlayerOpacity = 0f;
         }
-    }
-
-    void LateUpdate()
-    {
-        ChangeValueParametor();
-        model.Parts[3].Opacity = currentPlayerOpacity;
-
     }
 
     private void CheckParametor()

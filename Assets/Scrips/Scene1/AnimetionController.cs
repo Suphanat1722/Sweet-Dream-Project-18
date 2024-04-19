@@ -20,7 +20,6 @@ public class AnimetionController : MonoBehaviour
     private bool isSpreadLegs;
     private bool isFuck;
 
-    public static bool isPlayAnim;
     public static bool isCumInside;
 
 
@@ -29,18 +28,13 @@ public class AnimetionController : MonoBehaviour
         animModel = GameObject.Find("Model").GetComponent<Animator>();
         animCumOutside = GameObject.Find("CumOutside").GetComponent<Animator>();      
         animCumInside = GameObject.Find("CumInside").GetComponent<Animator>();
-
       
     }
 
 
     void Update()
     {
-        currentAlert = SexSystem.currentAlert;
-        currentHorny = SexSystem.currentHorny;
-        currentHornyPlayer = SexSystem.currentHornyPlayer;
-        isFuck = RadiusManeger.isFuck;
-        isSpreadLegs = RadiusManeger.isSpreadLegs;
+        SetVariables();
 
         if (currentAlert == 10f && !isPlayAlert)
         {
@@ -48,20 +42,17 @@ public class AnimetionController : MonoBehaviour
 
             currentAlert = 0f;
             isPlayAlert = true;
-            isPlayAnim = true;
         }
         if (currentHorny == 10f && !isPlayHorny && !isSpreadLegs)
         {
             animModel.SetTrigger("isGirlCum1");
             isPlayHorny = true;
-            isPlayAnim = true;
 
         }
         else if (currentHorny == 10f && !isPlayHorny && isSpreadLegs)
         {
             animModel.SetTrigger("isGirlCum2");
             isPlayHorny = true;
-            isPlayAnim = true;
         }
         if (currentHornyPlayer == 10f && isFuck)
         {
@@ -70,26 +61,36 @@ public class AnimetionController : MonoBehaviour
         else if (currentHornyPlayer == 10f && !isFuck)
         {
             animCumOutside.SetBool("isCumOutside", true);
-            isPlayAnim = true;
         }
 
+        AfterPlayAnim();
+    }
+
+    void SetVariables()
+    {
+        currentAlert = SexSystem.currentAlert;
+        currentHorny = SexSystem.currentHorny;
+        currentHornyPlayer = SexSystem.currentHornyPlayer;
+        isFuck = RadiusManeger.isFuck;
+        isSpreadLegs = RadiusManeger.isSpreadLegs;
+    }
+
+    void AfterPlayAnim()
+    {
         if (animModel.GetCurrentAnimatorStateInfo(0).IsName("GirlCum1_Anim") &&
             animModel.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             isPlayHorny = false;
-            isPlayAnim = false;
         }
         if (animModel.GetCurrentAnimatorStateInfo(0).IsName("GirlCum2_Anim") &&
            animModel.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             isPlayHorny = false;
-            isPlayAnim = false;
         }
         if (animModel.GetCurrentAnimatorStateInfo(0).IsName("CumInside_Anim") &&
            animModel.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             animCumInside.SetBool("isCumInside", true);
-            isPlayAnim = true;
             isCumInside = true;
         }
         if (animModel.GetCurrentAnimatorStateInfo(0).IsName("Awake_Anim") &&
