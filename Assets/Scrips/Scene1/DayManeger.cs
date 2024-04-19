@@ -3,20 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Live2D.Cubism.Core;
+using Unity.VisualScripting;
 
 public class DayManeger : MonoBehaviour
 {
     public static int day = 1;
     public TextMeshProUGUI text_Day;
+    public CubismModel model;
 
     private void Start()
     {
-        day = PlayerPrefs.GetInt("Day");
+        
+        model = GameObject.Find("Model").GetComponent<CubismModel>();
     }
 
     void Update()
     {
-        PlayerPrefs.SetInt("Day", day);
+        
+
+        if (SexSystem.currentHorny >= 5f)
+        {
+            
+            LoadScene.LoadNewScene("Scene0");
+        }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {

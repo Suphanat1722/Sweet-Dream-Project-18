@@ -13,7 +13,7 @@ public class AnimetionController : MonoBehaviour
     public Player player;
 
     private float currentAlert;
-    private float currentHorny;
+    public float currentHorny;
     private float currentHornyPlayer;
 
     private bool isPlayAlert;
@@ -44,28 +44,29 @@ public class AnimetionController : MonoBehaviour
             currentAlert = 0f;
             isPlayAlert = true;
         }
-        if (currentHorny == 10f && !isPlayHorny && !isSpreadLegs)
+        if (currentHorny >= 9.9f && !isPlayHorny && !isSpreadLegs)
         {
             animModel.SetTrigger("isGirlCum1");
             isPlayHorny = true;
 
         }
-        else if (currentHorny == 10f && !isPlayHorny && isSpreadLegs)
+        else if (currentHorny >= 9.9f && !isPlayHorny && isSpreadLegs)
         {
             animModel.SetTrigger("isGirlCum2");
             isPlayHorny = true;
         }
-        if (currentHornyPlayer == 10f && isFuck)
+        if (currentHornyPlayer == 9.9f && isFuck)
         {
             animModel.SetTrigger("isFinished");    
         }
-        else if (currentHornyPlayer == 10f && !isFuck)
+        else if (currentHornyPlayer == 9.9f && !isFuck)
         {
             animCumOutside.SetBool("isCumOutside", true);
         }
 
         AfterPlayAnim();
     }
+
 
     void SetVariables()
     {

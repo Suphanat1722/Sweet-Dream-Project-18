@@ -67,7 +67,6 @@ public class RadiusManeger : MonoBehaviour
         if (player.isClickPlayer && !AnimetionController.isCumInside)
         {
             currentPlayerOpacity += 0.7f * Time.deltaTime;
-            Debug.Log(currentPlayerOpacity);
         }
         if (AnimetionController.isCumInside)
         {

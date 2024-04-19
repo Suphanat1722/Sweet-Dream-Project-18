@@ -1,25 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-
     public SpriteRenderer spriteRenderer;
-
-    private int day;
+    public Animator animLoadScene;
+    public static LoadScene instance;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        day = DayManeger.day;
-    }
-
-    private void Update()
-    {
-
+        animLoadScene = GameObject.Find("Main Camera").GetComponent<Animator>();
     }
 
     void OnMouseEnter()
@@ -27,12 +19,24 @@ public class LoadScene : MonoBehaviour
         spriteRenderer.enabled = true;
     }
 
-    private void OnMouseDown()
+    void OnMouseDown()
     {
         if (gameObject.name == "Door")
         {
-            SceneManager.LoadScene("Scene1");
+            animLoadScene.SetTrigger("isZoom0");
+            StartCoroutine(LoadScene1AfterAnimation());
         }
+    }
+
+    IEnumerator LoadScene1AfterAnimation()
+    {
+        yield return new WaitForSeconds(2f); // Adjust the delay as needed
+        SceneManager.LoadScene("Scene1");
+    }
+    IEnumerator LoadScene0AfterAnimation()
+    {
+        yield return new WaitForSeconds(2f); // Adjust the delay as needed
+        SceneManager.LoadScene("Scene0");
     }
 
     void OnMouseExit()
@@ -40,4 +44,15 @@ public class LoadScene : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
+    public static void LoadNewScene(string name)
+    {
+        if (name == "Scene1")
+        {
+            //instance.StartCoroutine(instance.LoadScene1AfterAnimation());
+        }
+        else if (name == "Scene0")
+        {
+            //instance.StartCoroutine(instance.LoadScene0AfterAnimation());
+        }
+    }
 }
