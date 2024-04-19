@@ -33,13 +33,7 @@ public class SexSystem : MonoBehaviour
 
     void Update()
     {
-        currentMouseSpeed = MouseSpeed.currentMouseSpeed;
-        uiName = MouseClickOn.uiName;
-        day = DayManeger.day;
-
-        //Debug ค่าของ sliderAlert.value
-        textAlert.text = "Alert : " + sliderAlert.value.ToString();
-
+        SetVariables();
         gamePlay(uiName);
 
         //เช็คว่าคลิ้กที่ UIไหมและคำนวณค่าใน slide
@@ -68,10 +62,7 @@ public class SexSystem : MonoBehaviour
             sliderHornyPlayer.value += (currentMouseSpeed * hornyPlayerMultiplier) * Time.deltaTime;
         }
 
-        //เก็บค่าของ Slider ไว้ในตัวแปร
-        currentAlert = sliderAlert.value;
-        currentHorny = sliderHorny.value;
-        currentHornyPlayer = sliderHornyPlayer.value;
+ 
 
         if (sliderHorny.value >= 10f)
         {
@@ -89,9 +80,23 @@ public class SexSystem : MonoBehaviour
             sliderHorny.value = 0f;
             hornyPlayerMultiplier = 0f;
         }
+        //Debug ค่าของ sliderAlert.value
+        textAlert.text = "Alert : " + sliderAlert.value.ToString();
     }
 
-    private void gamePlay(string uiName)
+    void SetVariables()
+    {
+        currentMouseSpeed = MouseSpeed.currentMouseSpeed;
+        uiName = MouseClickOn.uiName;
+        day = DayManeger.day;
+
+        //เก็บค่าของ Slider ไว้ในตัวแปร
+        currentAlert = sliderAlert.value;
+        currentHorny = sliderHorny.value;
+        currentHornyPlayer = sliderHornyPlayer.value;
+    }
+
+    void gamePlay(string uiName)
     {
         uiName = this.uiName;
 
@@ -134,7 +139,7 @@ public class SexSystem : MonoBehaviour
             if (day == 1)
             {
                 alertMultiplier = 3;
-                hornyMultiplier = 1f;
+                hornyMultiplier = 2f;
             }
             else if (day == 2)
             {

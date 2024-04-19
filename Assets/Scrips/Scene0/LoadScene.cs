@@ -4,15 +4,22 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class LondScene : MonoBehaviour
+public class LoadScene : MonoBehaviour
 {
 
     public SpriteRenderer spriteRenderer;
 
+    private int day;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
+        day = DayManeger.day;
+    }
+
+    private void Update()
+    {
+
     }
 
     void OnMouseEnter()
@@ -22,12 +29,15 @@ public class LondScene : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //Debug.Log("Clicked on the sprite!");
-        SceneManager.LoadScene("Scene1");
+        if (gameObject.name == "Door")
+        {
+            SceneManager.LoadScene("Scene1");
+        }
     }
 
     void OnMouseExit()
     {
         spriteRenderer.enabled = false;
     }
+
 }

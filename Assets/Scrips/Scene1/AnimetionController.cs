@@ -9,6 +9,7 @@ public class AnimetionController : MonoBehaviour
     public Animator animModel;
     public Animator animCumOutside;
     public Animator animCumInside;
+    public Animator animLoadScene;
     public Player player;
 
     private float currentAlert;
@@ -28,9 +29,9 @@ public class AnimetionController : MonoBehaviour
         animModel = GameObject.Find("Model").GetComponent<Animator>();
         animCumOutside = GameObject.Find("CumOutside").GetComponent<Animator>();      
         animCumInside = GameObject.Find("CumInside").GetComponent<Animator>();
-      
-    }
+        animLoadScene = GameObject.Find("Main Camera").GetComponent<Animator>();
 
+    }
 
     void Update()
     {
@@ -39,7 +40,7 @@ public class AnimetionController : MonoBehaviour
         if (currentAlert == 10f && !isPlayAlert)
         {
             animModel.SetTrigger("isAwake");
-
+            animLoadScene.SetTrigger("isZoom");
             currentAlert = 0f;
             isPlayAlert = true;
         }
@@ -96,7 +97,6 @@ public class AnimetionController : MonoBehaviour
         if (animModel.GetCurrentAnimatorStateInfo(0).IsName("Awake_Anim") &&
            animModel.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
-            currentAlert = 0f;
             SceneManager.LoadScene("Scene0");
         }
     }
