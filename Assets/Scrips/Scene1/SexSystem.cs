@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+
 public class SexSystem : MonoBehaviour
 {
     public TextMeshProUGUI textAlert;
@@ -11,16 +12,24 @@ public class SexSystem : MonoBehaviour
     public Slider sliderHorny;
     public Slider sliderHornyPlayer;
 
-    public static float currentAlert;
-    public static float currentHorny;
-    public static float currentHornyPlayer;
+    public static float currentAlert = 0f;
+    public static float currentHorny = 0f;
+    public static float currentHornyPlayer = 0f;
+
 
     private float alertMultiplier;
     private float hornyMultiplier;
     private float hornyPlayerMultiplier;
     private string uiName;
     private float currentMouseSpeed;
-    private int day;
+    private int day = 1;
+
+    private void Awake()
+    {
+        currentAlert = 0f;
+        currentHorny = 0f;
+        currentHornyPlayer = 0f;
+    }
 
     void Update()
     {
@@ -243,12 +252,12 @@ public class SexSystem : MonoBehaviour
             else if (day == 5)
             {
                 alertMultiplier = 50;
-                hornyPlayerMultiplier = 5f;
+                hornyPlayerMultiplier = 0.5f;
             }
             else if (day == 6)
             {
                 alertMultiplier = 0.5f;
-                hornyPlayerMultiplier = 0.1f;
+                hornyPlayerMultiplier = 0.5f;
             }
 
             hornyMultiplier = 1f;
@@ -257,7 +266,7 @@ public class SexSystem : MonoBehaviour
         {
             alertMultiplier = 0.5f;
             hornyMultiplier = 0.5f;
-            hornyPlayerMultiplier = 0.1f;
+            hornyPlayerMultiplier = 0.5f;
         }
     }
 }

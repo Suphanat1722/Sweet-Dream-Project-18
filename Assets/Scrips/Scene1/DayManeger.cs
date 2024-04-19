@@ -9,8 +9,15 @@ public class DayManeger : MonoBehaviour
     public static int day = 1;
     public TextMeshProUGUI text_Day;
 
+    private void Start()
+    {
+        day = PlayerPrefs.GetInt("Day");
+    }
+
     void Update()
     {
+        PlayerPrefs.SetInt("Day", day);
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             day += 1;

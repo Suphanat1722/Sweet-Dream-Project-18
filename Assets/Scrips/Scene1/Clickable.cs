@@ -12,6 +12,7 @@ public class Clickable : MonoBehaviour,IDragHandler, IEndDragHandler
   
     private Vector3 gameObjStartPos;
     private RectTransform rectTransform;
+    private bool isPlayAnim;
 
     private void Start()
     {
@@ -19,10 +20,18 @@ public class Clickable : MonoBehaviour,IDragHandler, IEndDragHandler
         gameObjStartPos = rectTransform.anchoredPosition;
     }
 
+    private void Update()
+    {
+        isPlayAnim = AnimetionController.isPlayAnim;
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
-        isClick = true;     
-        rectTransform.anchoredPosition += eventData.delta;
+        if (!isPlayAnim)
+        {
+            isClick = true;
+            rectTransform.anchoredPosition += eventData.delta;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)

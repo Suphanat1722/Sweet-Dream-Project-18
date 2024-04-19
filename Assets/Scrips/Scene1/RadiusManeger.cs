@@ -40,7 +40,7 @@ public class RadiusManeger : MonoBehaviour
     private bool isClickSwitchHand;
     private bool isInsert;
 
-    public static float currentPlayerOpacity;
+    public static float currentPlayerOpacity = 0f;
     public static bool isSpreadLegs;
     public static bool isFuck;
 
@@ -51,13 +51,23 @@ public class RadiusManeger : MonoBehaviour
         ButtonChack();
 
         //¶éÒ¡´»ØèÁ Player
-        if (player.isClickPlayer)
+        if (player.isClickPlayer && !AnimetionController.isCumInside)
         {
             currentPlayerOpacity += 0.7f * Time.deltaTime;
+            Debug.Log(currentPlayerOpacity);
         }
-        else if (!player.isClickPlayer)
+        if (AnimetionController.isCumInside)
         {
             currentPlayerOpacity -= 0.7f * Time.deltaTime;
+        }
+
+        if (currentPlayerOpacity >= 1f && !AnimetionController.isCumInside)
+        {
+            currentPlayerOpacity = 1f;
+        } 
+        else if (currentPlayerOpacity <= 0f)
+        {
+            currentPlayerOpacity = 0f;
         }
     }
 

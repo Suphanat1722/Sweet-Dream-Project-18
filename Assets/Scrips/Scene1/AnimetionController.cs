@@ -2,11 +2,13 @@ using Live2D.Cubism.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AnimetionController : MonoBehaviour
 {
     public Animator animModel;
     public Animator animCumOutside;
+    public Animator animCumInside;
     public Player player;
 
     private float currentAlert;
@@ -18,11 +20,17 @@ public class AnimetionController : MonoBehaviour
     private bool isSpreadLegs;
     private bool isFuck;
 
+    public static bool isPlayAnim;
+    public static bool isCumInside;
+
 
     void Start()
     {
         animModel = GameObject.Find("Model").GetComponent<Animator>();
         animCumOutside = GameObject.Find("CumOutside").GetComponent<Animator>();      
+        animCumInside = GameObject.Find("CumInside").GetComponent<Animator>();
+
+      
     }
 
 
@@ -37,36 +45,58 @@ public class AnimetionController : MonoBehaviour
         if (currentAlert == 10f && !isPlayAlert)
         {
             animModel.SetTrigger("isAwake");
+
+            currentAlert = 0f;
             isPlayAlert = true;
+            isPlayAnim = true;
         }
         if (currentHorny == 10f && !isPlayHorny && !isSpreadLegs)
         {
             animModel.SetTrigger("isGirlCum1");
             isPlayHorny = true;
-            
-        }else if (currentHorny == 10f && !isPlayHorny && isSpreadLegs)
+            isPlayAnim = true;
+
+        }
+        else if (currentHorny == 10f && !isPlayHorny && isSpreadLegs)
         {
             animModel.SetTrigger("isGirlCum2");
             isPlayHorny = true;
+            isPlayAnim = true;
         }
         if (currentHornyPlayer == 10f && isFuck)
         {
-            animCumOutside.SetBool("isCumInside", true);
+            animModel.SetTrigger("isFinished");    
         }
         else if (currentHornyPlayer == 10f && !isFuck)
         {
             animCumOutside.SetBool("isCumOutside", true);
+            isPlayAnim = true;
         }
 
         if (animModel.GetCurrentAnimatorStateInfo(0).IsName("GirlCum1_Anim") &&
             animModel.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             isPlayHorny = false;
+            isPlayAnim = false;
         }
         if (animModel.GetCurrentAnimatorStateInfo(0).IsName("GirlCum2_Anim") &&
            animModel.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
         {
             isPlayHorny = false;
+            isPlayAnim = false;
+        }
+        if (animModel.GetCurrentAnimatorStateInfo(0).IsName("CumInside_Anim") &&
+           animModel.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+        {
+            animCumInside.SetBool("isCumInside", true);
+            isPlayAnim = true;
+            isCumInside = true;
+        }
+        if (animModel.GetCurrentAnimatorStateInfo(0).IsName("Awake_Anim") &&
+           animModel.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+        {
+            currentAlert = 0f;
+            SceneManager.LoadScene("Scene0");
         }
     }
 }
